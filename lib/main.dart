@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/register_screen.dart';
+import 'screens/auth/register_screen.dart';
 
 void main() {
   runApp(const MedTrackApp());

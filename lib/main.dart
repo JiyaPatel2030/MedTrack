@@ -1,7 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'screens/auth/register_screen.dart';
 
-void main() {
+import 'firebase_options.dart';
+import 'screens/auth/auth_gate.dart';
+import 'theme/app_theme.dart';
+import 'services/notification_service.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await NotificationService().initialize();
+
+  // await NotificationService().scheduleTestNotification();
+
   runApp(const MedTrackApp());
 }
 
@@ -13,7 +27,8 @@ class MedTrackApp extends StatelessWidget {
     return MaterialApp(
       title: 'MedTrack',
       debugShowCheckedModeBanner: false,
-      home: const RegisterScreen(),
+      theme: AppTheme.lightTheme,
+      home: const AuthGate(),
     );
   }
 }
